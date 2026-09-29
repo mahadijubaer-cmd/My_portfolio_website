@@ -38,6 +38,7 @@ The first release is a statically deployable website hosted from the GitHub repo
 | `README.md` | Governance, scope, terminology, release definition |
 | `product.md` | Users, goals, journeys, page and section requirements |
 | `content.md` | Content model, required inputs, editorial rules |
+| `profile-content.md` | Approved profile facts extracted from owner-provided LinkedIn screenshots |
 | `design.md` | Visual system, responsive layout, components, states |
 | `interaction.md` | Navigation, animation, theme, controls, form behavior |
 | `architecture.md` | Stack, source organization, routing, data and security |

@@ -6,26 +6,26 @@ Public claims MUST originate from Mahadi, an approved resume, an approved projec
 
 All implementation content MUST be stored in typed structured data where practical. Components MUST render data and MUST NOT duplicate biographical facts across files.
 
-## 2. Required content inputs
+## 2. Content readiness
 
-The following are `CONTENT_REQUIRED` before production release:
+Canonical facts extracted from owner-provided LinkedIn screenshots are recorded in `profile-content.md`. The following matrix controls launch readiness:
 
-| ID | Input | Minimum requirement |
-| --- | --- | --- |
-| C-REQ-01 | Full display name | Exact spelling and capitalization |
-| C-REQ-02 | Professional title | One primary role, optionally one specialization |
-| C-REQ-03 | Value proposition | 12–28 words, specific and credible |
-| C-REQ-04 | About biography | 80–180 approved words |
-| C-REQ-05 | Email | Public professional address |
-| C-REQ-06 | Location | City/country or approved broader region; optional only if intentionally private |
-| C-REQ-07 | Availability | Employment, freelance, collaboration, or unavailable |
-| C-REQ-08 | Skills | Grouped and approved list |
-| C-REQ-09 | Journey | Education/experience/milestones with dates |
-| C-REQ-10 | Projects | At least 2 credible projects; target 3–4 |
-| C-REQ-11 | Resume | Approved PDF with public-safe details |
-| C-REQ-12 | Portrait | Approved high-resolution image, or explicit decision to omit |
-| C-REQ-13 | Project media | At least one optimized image per featured project |
-| C-REQ-14 | Social preview | Approved 1200×630 image or generated branded asset |
+| ID | Input | Status | Release requirement |
+| --- | --- | --- | --- |
+| C-REQ-01 | Full display name | Confirmed | Use `MAHADI JUBAER` / title case where appropriate |
+| C-REQ-02 | Professional title | Confirmed with affiliation caveat | Use approved positioning from `profile-content.md` |
+| C-REQ-03 | Value proposition | Draftable from confirmed profile | Final 12–28 words require owner approval |
+| C-REQ-04 | About biography | Source supplied | Edit to 80–180 words and obtain owner approval |
+| C-REQ-05 | Email | `CONTENT_REQUIRED` | Public professional address |
+| C-REQ-06 | Location | Confirmed | Dhaka, Bangladesh |
+| C-REQ-07 | Availability | `CONTENT_REQUIRED` | Employment, freelance, collaboration, or unavailable |
+| C-REQ-08 | Skills | Confirmed visible set | Group and prioritize per `profile-content.md` |
+| C-REQ-09 | Journey | Confirmed | Employment and education supplied |
+| C-REQ-10 | Projects | Three names confirmed; detail incomplete | Validate contributions, stack, links, and media |
+| C-REQ-11 | Resume | `CONTENT_REQUIRED` | Approved public-safe PDF |
+| C-REQ-12 | Portrait | Screenshot preview supplied, original required | Approved high-resolution file or explicit omission |
+| C-REQ-13 | Project media | Preview thumbnails only | Original screenshots/assets required |
+| C-REQ-14 | Social preview | `CONTENT_REQUIRED` | Approved 1200×630 image or generated branded asset |
 
 ## 3. Profile data contract
 

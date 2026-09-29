@@ -42,6 +42,14 @@ This file records architectural decisions and approved deviations. New entries M
 - Reason: Professional integrity and accuracy are more important than filling every section immediately.
 - Consequence: Production launch is blocked until required content is supplied, approved, or deliberately waived.
 
+## DEC-006 — Owner-provided LinkedIn screenshots as profile source
+
+- Date: 2026-09-29
+- Status: Accepted
+- Decision: Treat the nine LinkedIn screenshots supplied directly by Mahadi as an approved source for the visible profile facts recorded in `profile-content.md`.
+- Reason: Automated LinkedIn access was unavailable, and the owner supplied current screenshots from the editable profile view.
+- Consequence: Visible facts may be used for implementation. Information not visible in the screenshots remains unresolved and MUST NOT be inferred. Any conflict with a later resume or explicit correction requires owner confirmation.
+
 ## Decision template
 
 ```md
