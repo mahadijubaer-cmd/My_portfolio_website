@@ -50,6 +50,14 @@ This file records architectural decisions and approved deviations. New entries M
 - Reason: Automated LinkedIn access was unavailable, and the owner supplied current screenshots from the editable profile view.
 - Consequence: Visible facts may be used for implementation. Information not visible in the screenshots remains unresolved and MUST NOT be inferred. Any conflict with a later resume or explicit correction requires owner confirmation.
 
+## DEC-007 — Approved contact and portfolio assets
+
+- Date: 2026-09-29
+- Status: Accepted
+- Decision: Use `mahadi.jubaer@alora.cloud` as the public contact email; use the owner-supplied professional portrait as the primary profile image; and recognize the supplied URLs for Alora Cloud, Mohseen, and Smart Cafe Management as canonical project destinations.
+- Reason: Mahadi supplied these values and the original portrait directly for the portfolio.
+- Consequence: Implementation may use these assets without further identity confirmation, while project contribution details and employer-sensitive material still require approval.
+
 ## Decision template
 
 ```md

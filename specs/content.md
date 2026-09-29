@@ -16,14 +16,14 @@ Canonical facts extracted from owner-provided LinkedIn screenshots are recorded 
 | C-REQ-02 | Professional title | Confirmed with affiliation caveat | Use approved positioning from `profile-content.md` |
 | C-REQ-03 | Value proposition | Draftable from confirmed profile | Final 12–28 words require owner approval |
 | C-REQ-04 | About biography | Source supplied | Edit to 80–180 words and obtain owner approval |
-| C-REQ-05 | Email | `CONTENT_REQUIRED` | Public professional address |
+| C-REQ-05 | Email | Confirmed | `mahadi.jubaer@alora.cloud` |
 | C-REQ-06 | Location | Confirmed | Dhaka, Bangladesh |
 | C-REQ-07 | Availability | `CONTENT_REQUIRED` | Employment, freelance, collaboration, or unavailable |
 | C-REQ-08 | Skills | Confirmed visible set | Group and prioritize per `profile-content.md` |
 | C-REQ-09 | Journey | Confirmed | Employment and education supplied |
-| C-REQ-10 | Projects | Three names confirmed; detail incomplete | Validate contributions, stack, links, and media |
+| C-REQ-10 | Projects | Three names and destinations confirmed; detail incomplete | Validate contributions, stack, media, and outcomes |
 | C-REQ-11 | Resume | `CONTENT_REQUIRED` | Approved public-safe PDF |
-| C-REQ-12 | Portrait | Screenshot preview supplied, original required | Approved high-resolution file or explicit omission |
+| C-REQ-12 | Portrait | Original supplied and approved | Preserve master; create optimized responsive derivatives during implementation |
 | C-REQ-13 | Project media | Preview thumbnails only | Original screenshots/assets required |
 | C-REQ-14 | Social preview | `CONTENT_REQUIRED` | Approved 1200×630 image or generated branded asset |
 

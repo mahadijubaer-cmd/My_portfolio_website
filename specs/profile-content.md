@@ -17,6 +17,7 @@ Source: nine LinkedIn screenshots supplied directly by Mahadi Jubaer. This file 
 | Current product/team affiliation | Alora Cloud | Confirmed by headline and About section |
 | Industry focus | SaaS, platform engineering, system architecture, cloud infrastructure, DevOps, product engineering | Confirmed by headline |
 | Education | Bachelor of Engineering in Computer Science, BRAC University, 2022–2026 | Confirmed |
+| Public email | `mahadi.jubaer@alora.cloud` | Confirmed by owner |
 | LinkedIn | `https://www.linkedin.com/in/mahadi-jubaer-9101263a5/` | Confirmed externally supplied URL |
 | GitHub | `https://github.com/mahadijubaer-cmd` | Confirmed externally supplied URL |
 
@@ -147,25 +148,27 @@ The screenshots confirm three projects. Details below are intentionally limited 
 ### PRJ-01 — Alora Cloud Platform
 
 - Association: Alpha Net Bangladesh.
+- Public product URL: `https://alora.cloud/`.
 - Visible contribution: Junior Developer and QA team contribution.
 - Related confirmed domains: AI-native enterprise platform ecosystem, SaaS, shared platform services, cloud infrastructure, communications, workflow automation, and intelligent software capabilities.
-- Status: contribution details, public URL, source availability, exact stack, screenshots, and measurable outcomes remain `CONTENT_REQUIRED`.
+- Status: contribution details, source availability, exact stack, screenshots, and measurable outcomes remain `CONTENT_REQUIRED`.
 - Confidentiality: project copy MUST avoid proprietary architecture or client information unless approved.
 
 ### PRJ-02 — Mohseen
 
 - Description visible in Projects: a digital Islamic giving platform.
+- Public product URL: `https://mohseen.bd/`.
 - Activity screenshot describes donor payment choices including mobile banking, payment gateways, cards/bank transfer, QR payment, and receipts.
 - Mahadi is shown as contributing to the project; exact role is not fully visible.
-- Status: exact contribution, public URL, source availability, stack, screenshots, and measurable outcomes remain `CONTENT_REQUIRED`.
+- Status: exact contribution, source availability, stack, screenshots, and measurable outcomes remain `CONTENT_REQUIRED`.
 - Spelling: use **Mohseen** as displayed.
 
 ### PRJ-03 — SCMS Platform
 
 - Expanded name visible in project thumbnail: Smart Cafe Management.
 - Visible description: production-oriented multi-tenant SaaS platform; remaining text is truncated.
-- A GitHub repository thumbnail is visible under `mahadijubaer-cmd`, but the complete repository URL is not confirmed by the screenshot.
-- Status: complete problem statement, features, role, stack, repository/live URLs, screenshots, and outcomes remain `CONTENT_REQUIRED`.
+- Source repository: `https://github.com/mahadijubaer-cmd/Smart_cafe_management`.
+- Status: complete problem statement, features, role, stack, live URL if any, screenshots, and outcomes remain `CONTENT_REQUIRED`.
 
 ### Featured-project policy
 
@@ -238,22 +241,27 @@ Go and Cisco Systems Products MAY be included in a secondary `Additional` group,
 
 ## 8. Profile imagery
 
-The screenshots include a recognizable professional portrait and a LinkedIn banner. They are references, not production assets:
+Mahadi supplied an original square, high-resolution professional portrait in addition to the LinkedIn screenshots:
 
-- The portrait shows Mahadi in formal clothing outdoors and is suitable in concept.
-- The portfolio MUST use the original portrait file, not a screenshot crop, if available.
+- The portrait shows Mahadi in a dark suit outdoors against a bright blue sky and city background.
+- The supplied original is approved as the primary profile portrait.
+- Preserved source asset: `assets/mahadi-jubaer-portrait.png` (approximately 2.08 MB, square PNG).
+- The portrait MUST be copied from the preserved source into the repository's production asset directory during implementation; the website MUST NOT serve the unoptimized specification master directly.
+- The original master MUST be preserved without destructive overwrite.
+- Optimized AVIF/WebP derivatives SHOULD be generated for responsive delivery while retaining an appropriate fallback.
+- Cropping MUST keep Mahadi's face and upper body visible. Mobile and desktop crops MAY differ through `<picture>` art direction.
+- Suggested alt text when informative: `Mahadi Jubaer wearing a dark suit on a rooftop overlooking Dhaka.`
 - The LinkedIn banner combines software architecture, tool logos, city imagery, and code. It SHOULD NOT be copied directly into the portfolio; the portfolio design system should express the same positioning with cleaner original presentation.
 
 ## 9. Information still required
 
-The screenshots do not provide enough reliable information for:
+The supplied material does not yet provide enough reliable information for:
 
-- public email address;
 - availability and desired opportunity types;
 - approved resume PDF;
-- original high-resolution portrait;
-- project URLs and exact GitHub repositories;
-- complete project roles, features, technology stacks, outcomes, and permissions;
+- complete project roles, features, technology stacks, outcomes, and publication permissions;
+- source repository information for Alora Cloud and Mohseen, if public;
+- a live URL for Smart Cafe Management, if deployed;
 - original project screenshots;
 - certifications, awards, languages, or publications, if any;
 - preferred pronouns, optional;
@@ -271,3 +279,4 @@ These fields remain blocked for production release unless Mahadi supplies them o
 - Do not call Mahadi an expert unless he explicitly approves that wording.
 - Preserve the distinction between employer, product affiliation, and project contribution.
 - Dates and `Present` status MUST be data-driven so they do not become stale.
+- Use `mahadi.jubaer@alora.cloud` as the public email and contact link unless the owner later replaces it.
