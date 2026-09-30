@@ -99,16 +99,6 @@ export default function App() {
             duration: reduced ? 0.08 : 0.55,
             ease: 'power4.inOut',
           })
-          .to(
-            '.intro-count',
-            {
-              innerText: 100,
-              duration: reduced ? 0.08 : 0.55,
-              snap: { innerText: 1 },
-              ease: 'power2.out',
-            },
-            reduced ? 0 : 0.42,
-          )
           .to('.intro-accent-panel', {
             scaleX: 1,
             duration: reduced ? 0.05 : 0.32,
@@ -272,10 +262,8 @@ export default function App() {
           </div>
           <div className="intro-meter">
             <div>
-              <span>Initializing portfolio</span>
-              <span>
-                <b className="intro-count">0</b> / 100
-              </span>
+              <span>Engineering · Product · Systems</span>
+              <span>Enter portfolio</span>
             </div>
             <i className="intro-progress-bar" />
           </div>
@@ -341,10 +329,10 @@ export default function App() {
           </h1>
           <div className="hero-portrait-frame">
             <img
-              src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-portrait.jpg`}
-              alt="Mahadi Jubaer wearing a dark suit on a rooftop overlooking Dhaka"
-              width="1000"
-              height="1000"
+              src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-event.jpg`}
+              alt="Mahadi Jubaer at the Mohseen platform launch event"
+              width="1256"
+              height="1256"
               fetchPriority="high"
             />
             <span className="portrait-stamp">
@@ -390,10 +378,10 @@ export default function App() {
           <div className="section-shell about-story-grid">
             <div className="about-portrait">
               <img
-                src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-event.jpg`}
-                alt="Mahadi Jubaer at the Mohseen platform launch event"
-                width="1256"
-                height="1256"
+                src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-portrait.jpg`}
+                alt="Mahadi Jubaer wearing a dark suit on a rooftop overlooking Dhaka"
+                width="1000"
+                height="1000"
                 loading="lazy"
               />
               <div className="system-nodes" aria-hidden="true">

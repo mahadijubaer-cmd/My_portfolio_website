@@ -249,7 +249,7 @@ Mahadi supplied an original square, high-resolution professional portrait in add
 - The supplied original is approved as the primary profile portrait.
 - Preserved source asset: `assets/mahadi-jubaer-portrait.png` (approximately 2.08 MB, square PNG).
 - The portrait MUST be copied from the preserved source into the repository's production asset directory during implementation; the website MUST NOT serve the unoptimized specification master directly.
-- A second owner-supplied portrait from the Mohseen launch event is approved for the About section, preventing repetition of the rooftop hero portrait. The optimized production asset is `public/images/mahadi-jubaer-event.jpg`.
+- A second owner-supplied portrait from the Mohseen launch event is approved for the hero. The rooftop portrait remains in the About section so the two major identity sections use distinct imagery. The optimized event asset is `public/images/mahadi-jubaer-event.jpg`.
 - The original master MUST be preserved without destructive overwrite.
 - Optimized AVIF/WebP derivatives SHOULD be generated for responsive delivery while retaining an appropriate fallback.
 - Cropping MUST keep Mahadi's face and upper body visible. Mobile and desktop crops MAY differ through `<picture>` art direction.

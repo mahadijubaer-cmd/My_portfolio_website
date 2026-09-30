@@ -99,7 +99,7 @@ Purpose: establish polish while allowing critical fonts and portrait media to se
 Behavior:
 
 1. A dark editorial canvas presents a compact `MJ` mark, technical metadata, and Mahadi's name through two restrained line-mask reveals.
-2. A thin lime system path draws from 0 to 100 while the numeric progress remains secondary.
+2. A thin lime system path advances beneath compact engineering metadata; no percentage counter is shown.
 3. A narrow lime edge expands briefly before the overlay masks upward to reveal the hero.
 4. Total duration MUST be 1.2–1.8 seconds on a warm cache.
 5. The intro MUST run only once per session.
