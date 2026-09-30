@@ -279,8 +279,15 @@ export default function App() {
       </a>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Mahadi Jubaer, home">
-          <span className="brand-mark">MJ</span>
-          <span className="brand-name">Mahadi Jubaer</span>
+          <span className="brand-logo-frame" aria-hidden="true">
+            <img
+              className="brand-logo"
+              src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-logo.png`}
+              alt=""
+              width="2048"
+              height="768"
+            />
+          </span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navItems.map(([label, href]) => (

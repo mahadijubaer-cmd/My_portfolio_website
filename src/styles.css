@@ -236,22 +236,34 @@ img {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
   width: max-content;
-  font-weight: 750;
+  padding: 0.38rem 0.62rem;
+  border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
+  border-radius: 0.75rem;
+  background: #f5f1e8;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 39px;
-  height: 39px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--ink);
-  font-size: 0.78rem;
+.brand:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.17);
 }
-.brand-name {
-  font-size: 0.9rem;
+.brand-logo-frame {
+  position: relative;
+  display: block;
+  width: clamp(9.5rem, 13vw, 12rem);
+  height: clamp(1.75rem, 2.5vw, 2.2rem);
+  overflow: hidden;
+}
+.brand-logo {
+  position: absolute;
+  left: -4%;
+  top: -53%;
+  width: 109%;
+  max-width: none;
+  height: auto;
 }
 .desktop-nav {
   display: flex;
@@ -1234,8 +1246,13 @@ img {
   .intro-name-offset {
     margin-left: 0.18em;
   }
-  .brand-name {
-    display: none;
+  .brand {
+    padding: 0.32rem 0.48rem;
+    border-radius: 0.62rem;
+  }
+  .brand-logo-frame {
+    width: clamp(8.5rem, 41vw, 10rem);
+    height: clamp(1.55rem, 7.3vw, 1.85rem);
   }
   .hero-display {
     font-size: clamp(3.4rem, 15.5vw, 5.4rem);
