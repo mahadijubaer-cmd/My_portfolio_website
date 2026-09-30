@@ -1,0 +1,116 @@
+import {
+  siDjango,
+  siDocker,
+  siFastapi,
+  siGit,
+  siJavascript,
+  siKubernetes,
+  siLinux,
+  siMysql,
+  siNextdotjs,
+  siPostgresql,
+  siPython,
+  siReact,
+  siRedis,
+  siTailwindcss,
+  siTypescript,
+  type SimpleIcon,
+} from 'simple-icons';
+export type Technology = {
+  name: string;
+  category: 'Frontend' | 'Backend' | 'Data' | 'Cloud';
+  icon: SimpleIcon;
+  statement: string;
+};
+export const technologies: Technology[] = [
+  {
+    name: 'React',
+    category: 'Frontend',
+    icon: siReact,
+    statement: 'Component-driven product interfaces.',
+  },
+  {
+    name: 'Next.js',
+    category: 'Frontend',
+    icon: siNextdotjs,
+    statement: 'Production-ready React applications.',
+  },
+  {
+    name: 'TypeScript',
+    category: 'Frontend',
+    icon: siTypescript,
+    statement: 'Safer systems through explicit types.',
+  },
+  {
+    name: 'JavaScript',
+    category: 'Frontend',
+    icon: siJavascript,
+    statement: 'The language of interactive products.',
+  },
+  {
+    name: 'Tailwind CSS',
+    category: 'Frontend',
+    icon: siTailwindcss,
+    statement: 'Consistent, responsive interface systems.',
+  },
+  {
+    name: 'Python',
+    category: 'Backend',
+    icon: siPython,
+    statement: 'Clear services, automation, and AI systems.',
+  },
+  {
+    name: 'FastAPI',
+    category: 'Backend',
+    icon: siFastapi,
+    statement: 'Fast, typed, production-focused APIs.',
+  },
+  {
+    name: 'Django',
+    category: 'Backend',
+    icon: siDjango,
+    statement: 'Structured backend applications and APIs.',
+  },
+  {
+    name: 'PostgreSQL',
+    category: 'Data',
+    icon: siPostgresql,
+    statement: 'Reliable relational data architecture.',
+  },
+  {
+    name: 'MySQL',
+    category: 'Data',
+    icon: siMysql,
+    statement: 'Practical relational application storage.',
+  },
+  {
+    name: 'Redis',
+    category: 'Data',
+    icon: siRedis,
+    statement: 'Caching, queues, and real-time coordination.',
+  },
+  {
+    name: 'Docker',
+    category: 'Cloud',
+    icon: siDocker,
+    statement: 'Reproducible application environments.',
+  },
+  {
+    name: 'Kubernetes',
+    category: 'Cloud',
+    icon: siKubernetes,
+    statement: 'Container orchestration at platform scale.',
+  },
+  {
+    name: 'Linux',
+    category: 'Cloud',
+    icon: siLinux,
+    statement: 'The foundation beneath modern infrastructure.',
+  },
+  {
+    name: 'Git',
+    category: 'Cloud',
+    icon: siGit,
+    statement: 'Traceable, collaborative delivery workflows.',
+  },
+];

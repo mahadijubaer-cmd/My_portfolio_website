@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { useGSAP } from '@gsap/react';
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -12,29 +12,42 @@ import {
   Sun,
   X,
 } from 'lucide-react';
-import { experience, profile, projects, skillGroups } from './content';
+import { gsap, ScrollTrigger, SplitText } from './animation/gsap';
+import { experience, profile, projects } from './content';
+import { TechLogo } from './TechLogo';
+import { technologies } from './technologies';
 
 const navItems = [
   ['Work', '#work'],
   ['About', '#about'],
-  ['Skills', '#skills'],
+  ['Tools', '#tools'],
   ['Journey', '#journey'],
   ['Contact', '#contact'],
 ] as const;
 
 export default function App() {
+  const root = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
     document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
   );
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const reduceMotion = useReducedMotion();
-
+  const [showIntro, setShowIntro] = useState(
+    () => sessionStorage.getItem('mj-intro-seen') !== 'true',
+  );
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
+  useEffect(() => {
+    if (!showIntro) return;
+    const fallback = window.setTimeout(() => {
+      sessionStorage.setItem('mj-intro-seen', 'true');
+      setShowIntro(false);
+    }, 1900);
+    return () => window.clearTimeout(fallback);
+  }, [showIntro]);
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (event: KeyboardEvent) => {
@@ -51,6 +64,153 @@ export default function App() {
     };
   }, [menuOpen]);
 
+  useGSAP(
+    () => {
+      if (navigator.userAgent.includes('jsdom')) return;
+      const mm = gsap.matchMedia();
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (showIntro) {
+        gsap
+          .timeline({
+            onComplete: () => {
+              sessionStorage.setItem('mj-intro-seen', 'true');
+              setShowIntro(false);
+            },
+          })
+          .to('.intro-progress-bar', {
+            scaleX: 1,
+            duration: reduced ? 0.1 : 1.05,
+            ease: 'power3.inOut',
+          })
+          .to(
+            '.intro-count',
+            {
+              innerText: 100,
+              duration: reduced ? 0.1 : 1,
+              snap: { innerText: 1 },
+              ease: 'power2.out',
+            },
+            0,
+          )
+          .to(
+            '.intro-panel',
+            { yPercent: -100, duration: reduced ? 0.12 : 0.7, ease: 'power4.inOut' },
+            '+=.08',
+          );
+      }
+      if (!reduced) {
+        const split = SplitText.create('.hero-display', {
+          type: 'lines',
+          mask: 'lines',
+          aria: 'auto',
+        });
+        gsap.from(split.lines, {
+          yPercent: 110,
+          rotate: 2,
+          duration: 1.1,
+          stagger: 0.11,
+          ease: 'power4.out',
+          delay: showIntro ? 1.15 : 0.1,
+        });
+        gsap.from('.hero-support > *', {
+          y: 20,
+          autoAlpha: 0,
+          duration: 0.75,
+          stagger: 0.09,
+          ease: 'power3.out',
+          delay: showIntro ? 1.38 : 0.28,
+        });
+        gsap.from('.hero-portrait-frame', {
+          clipPath: 'inset(100% 0 0 0)',
+          scale: 1.08,
+          duration: 1.25,
+          ease: 'power4.out',
+          delay: showIntro ? 1.2 : 0.18,
+        });
+        gsap.to('.manifesto-line-a', {
+          xPercent: -18,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.manifesto',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+        gsap.fromTo(
+          '.manifesto-line-b',
+          { xPercent: -18 },
+          {
+            xPercent: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.manifesto',
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          },
+        );
+        gsap.utils.toArray<HTMLElement>('.about-paragraph').forEach((item) =>
+          gsap.from(item, {
+            y: 55,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: item, start: 'top 82%', once: true },
+          }),
+        );
+        mm.add('(min-width: 901px)', () => {
+          const track = document.querySelector<HTMLElement>('.tech-track');
+          if (!track) return;
+          gsap.to(track, {
+            x: () => -(track.scrollWidth - window.innerWidth + 120),
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.tools-stage',
+              start: 'top top',
+              end: () => `+=${technologies.length * 145}`,
+              scrub: 1,
+              pin: true,
+              invalidateOnRefresh: true,
+            },
+          });
+        });
+        gsap.from('.journey-path-fill', {
+          scaleY: 0,
+          transformOrigin: 'top',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.journey-list',
+            start: 'top 70%',
+            end: 'bottom 70%',
+            scrub: 1,
+          },
+        });
+        gsap.utils.toArray<HTMLElement>('.journey-node').forEach((node) =>
+          gsap.from(node, {
+            scale: 0,
+            duration: 0.45,
+            ease: 'back.out(2)',
+            scrollTrigger: { trigger: node, start: 'top 72%', once: true },
+          }),
+        );
+        gsap.to('.contact-marquee-track', {
+          xPercent: -30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.contact-section',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+      }
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
+      return () => mm.revert();
+    },
+    { scope: root, dependencies: [showIntro], revertOnUpdate: true },
+  );
+
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(profile.email);
@@ -60,12 +220,21 @@ export default function App() {
       window.location.href = `mailto:${profile.email}`;
     }
   };
-  // Content is visible by default. Motion is reserved for the hero and direct
-  // interactions so screenshots, printing, and observer failures never hide it.
-  const reveal = {};
-
   return (
-    <>
+    <div ref={root}>
+      {showIntro && (
+        <div className="intro-panel" aria-hidden="true">
+          <div className="intro-mark">
+            MJ<span>Systems in motion</span>
+          </div>
+          <div className="intro-meter">
+            <i className="intro-progress-bar" />
+            <span>
+              <b className="intro-count">0</b>%
+            </span>
+          </div>
+        </div>
+      )}
       <a className="skip-link" href="#main">
         Skip to main content
       </a>
@@ -116,24 +285,36 @@ export default function App() {
           </nav>
         )}
       </header>
-
       <main id="main">
-        <section id="top" className="hero section-shell" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <motion.p className="eyebrow" {...reveal}>
-              Full-Stack Software Engineer · Dhaka
-            </motion.p>
-            <motion.h1 id="hero-title" {...reveal}>
-              Building scalable software for <em>real impact.</em>
-            </motion.h1>
-            <motion.p className="hero-intro" {...reveal}>
-              I’m Mahadi Jubaer, a Full-Stack Software Engineer at Alpha Net Bangladesh, working on
-              Alora Cloud. I build SaaS platforms, backend systems, modern web applications, and
-              AI-enabled product experiences.
-            </motion.p>
-            <motion.div className="hero-actions" {...reveal}>
+        <section id="top" className="hero-stage section-shell" aria-labelledby="hero-title">
+          <p className="eyebrow">Software · Systems · Product</p>
+          <h1 id="hero-title" className="hero-display">
+            <span>FULL-STACK</span>
+            <span>SOFTWARE</span>
+            <span>ENGINEER</span>
+          </h1>
+          <div className="hero-portrait-frame">
+            <img
+              src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-portrait.jpg`}
+              alt="Mahadi Jubaer wearing a dark suit on a rooftop overlooking Dhaka"
+              width="1000"
+              height="1000"
+              fetchPriority="high"
+            />
+            <span className="portrait-stamp">
+              DHAKA
+              <br />
+              2026
+            </span>
+          </div>
+          <div className="hero-support">
+            <p>
+              Building scalable SaaS, cloud, and AI-enabled systems from interface to
+              infrastructure.
+            </p>
+            <div className="hero-actions">
               <a className="button button-primary" href="#work">
-                View selected work <ArrowDownRight size={18} />
+                Explore selected work <ArrowDownRight size={18} />
               </a>
               <a
                 className="button button-secondary"
@@ -143,124 +324,55 @@ export default function App() {
               >
                 GitHub <ArrowUpRight size={18} />
               </a>
-            </motion.div>
-            <motion.div className="hero-meta" {...reveal}>
-              <span>
-                <i className="status-dot" />
-                Currently building at Alpha Net Bangladesh
-              </span>
-              <span>Python · FastAPI · React · Cloud</span>
-            </motion.div>
+            </div>
+            <div className="hero-status">
+              <i />
+              Currently building at Alpha Net Bangladesh
+            </div>
           </div>
-          <motion.div
-            className="portrait-wrap"
-            initial={reduceMotion ? {} : { opacity: 0, scale: 0.96 }}
-            animate={reduceMotion ? {} : { opacity: 1, scale: 1 }}
-            transition={{ duration: 0.75 }}
-          >
-            <div className="portrait-label">
-              <span>Based in</span>Dhaka, Bangladesh
-            </div>
-            <img
-              src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-portrait.jpg`}
-              alt="Mahadi Jubaer wearing a dark suit on a rooftop overlooking Dhaka"
-              width="1000"
-              height="1000"
-              fetchPriority="high"
-            />
-            <div className="portrait-orbit" aria-hidden="true">
-              ENGINEER · BUILDER · PROBLEM SOLVER ·
-            </div>
-          </motion.div>
-        </section>
-
-        <section id="work" className="section-shell content-section" aria-labelledby="work-title">
-          <motion.div className="section-heading" {...reveal}>
-            <p className="section-kicker">01 / Selected work</p>
-            <h2 id="work-title">Products built with purpose.</h2>
-            <p>
-              Selected platforms where engineering decisions meet real users and operational needs.
-            </p>
-          </motion.div>
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <motion.article
-                className={`project-card project-${project.tone}`}
-                key={project.slug}
-                {...reveal}
-              >
-                <div className="project-visual" aria-hidden="true">
-                  <span className="project-number">{project.index}</span>
-                  <div className="visual-window">
-                    <div className="window-top">
-                      <i />
-                      <i />
-                      <i />
-                    </div>
-                    <div className="window-content">
-                      <span>{project.category}</span>
-                      <strong>{project.title}</strong>
-                      <div className="visual-lines">
-                        <i />
-                        <i />
-                        <i />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="project-body">
-                  <p className="project-category">{project.category}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="project-tags">
-                    {project.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                  <div className="project-footer">
-                    <span>{project.role}</span>
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`${project.linkLabel} (opens in a new tab)`}
-                    >
-                      {project.linkLabel}
-                      <ArrowUpRight size={18} />
-                    </a>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
+          <div className="hero-orbit" aria-hidden="true">
+            SAAS · CLOUD · AI · DEVOPS ·
           </div>
         </section>
-
-        <section id="about" className="about-section content-section" aria-labelledby="about-title">
-          <div className="section-shell about-grid">
-            <motion.div className="section-heading sticky-heading" {...reveal}>
-              <p className="section-kicker">02 / About</p>
-              <h2 id="about-title">Engineering reliable products from idea to production.</h2>
-            </motion.div>
-            <motion.div className="about-copy" {...reveal}>
-              <p className="about-lead">
+        <section className="manifesto" aria-label="Engineering philosophy">
+          <div className="manifesto-line manifesto-line-a">
+            THOUGHTFUL SYSTEMS — BUILT TO SCALE —
+          </div>
+          <div className="manifesto-line manifesto-line-b">FROM PRODUCT IDEA — TO PRODUCTION —</div>
+        </section>
+        <section id="about" className="about-story content-section" aria-labelledby="about-title">
+          <div className="section-shell about-story-grid">
+            <div className="about-portrait">
+              <img
+                src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-portrait.jpg`}
+                alt=""
+                width="1000"
+                height="1000"
+                loading="lazy"
+              />
+              <div className="system-nodes" aria-hidden="true">
+                <span>01 Interface</span>
+                <span>02 API</span>
+                <span>03 Data</span>
+                <span>04 Infrastructure</span>
+              </div>
+            </div>
+            <div className="about-narrative">
+              <p className="section-kicker">01 / About</p>
+              <h2 id="about-title">I connect every layer of a product.</h2>
+              <p className="about-paragraph about-lead">
                 I’m a Full-Stack Software Engineer at Alpha Net Bangladesh, working on Alora Cloud
                 and related SaaS and cloud-based products.
               </p>
-              <p>
-                I contribute across the complete software lifecycle—from understanding requirements
-                and designing system architecture to building frontend and backend systems, testing
-                software, and supporting deployment and infrastructure.
+              <p className="about-paragraph">
+                I contribute across the complete software lifecycle—from requirements and system
+                architecture to frontend and backend implementation, testing, deployment, and
+                infrastructure.
               </p>
-              <p>
-                My backend work focuses on Python, FastAPI, REST APIs, PostgreSQL, Redis,
-                SQLAlchemy, authentication, role-based access control, and real-time communication.
-                On the frontend, I build modern interfaces using React, Next.js, TypeScript,
-                JavaScript, and Tailwind CSS.
-              </p>
-              <p>
-                I’m especially interested in scalable SaaS platforms, AI-enabled applications,
-                intelligent workflows, distributed architecture, and engineering products that can
-                move reliably from concept to production.
+              <p className="about-paragraph">
+                My work combines Python and FastAPI services, React and Next.js interfaces,
+                PostgreSQL and Redis data systems, and cloud-native delivery with Docker,
+                Kubernetes, Linux, Git, and CI/CD.
               </p>
               <div className="about-facts">
                 <div>
@@ -268,11 +380,11 @@ export default function App() {
                   <strong>Dhaka, Bangladesh</strong>
                 </div>
                 <div>
-                  <span>Working on</span>
+                  <span>Building</span>
                   <strong>Alora Cloud</strong>
                 </div>
                 <div>
-                  <span>Studied at</span>
+                  <span>Education</span>
                   <strong>BRAC University</strong>
                 </div>
                 <div>
@@ -280,112 +392,150 @@ export default function App() {
                   <strong>SaaS · AI · Cloud</strong>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
-
-        <section
-          id="skills"
-          className="section-shell content-section"
-          aria-labelledby="skills-title"
-        >
-          <motion.div className="section-heading heading-row" {...reveal}>
-            <div>
-              <p className="section-kicker">03 / Capabilities</p>
-              <h2 id="skills-title">Across the full stack.</h2>
-            </div>
-            <p>Tools are useful. Knowing where and why to use them is the real skill.</p>
-          </motion.div>
-          <div className="skills-grid">
-            {skillGroups.map((group) => (
-              <motion.article key={group.title} className="skill-card" {...reveal}>
-                <span className="skill-number">{group.number}</span>
-                <h3>{group.title}</h3>
-                <p>{group.summary}</p>
-                <ul>
-                  {group.skills.map((skill) => (
-                    <li key={skill}>{skill}</li>
-                  ))}
-                </ul>
-              </motion.article>
+        <section id="tools" className="tools-stage content-section" aria-labelledby="tools-title">
+          <div className="tools-header section-shell">
+            <p className="section-kicker">02 / Technology system</p>
+            <h2 id="tools-title">Tools I use to move ideas forward.</h2>
+            <p>From interface craft to infrastructure—each tool has a role in the system.</p>
+          </div>
+          <div className="tech-track">
+            {technologies.map((technology) => (
+              <TechLogo technology={technology} key={technology.name} />
             ))}
           </div>
+          <div className="tools-progress section-shell" aria-hidden="true">
+            <span>SCROLL TO EXPLORE</span>
+            <i />
+          </div>
         </section>
-
+        <section id="work" className="work-sequence content-section" aria-labelledby="work-title">
+          <div className="section-shell">
+            <div className="work-heading">
+              <p className="section-kicker">03 / Selected systems</p>
+              <h2 id="work-title">Built for real workflows.</h2>
+              <p>
+                Engineering contributions across enterprise SaaS, digital giving, and multi-tenant
+                operations.
+              </p>
+            </div>
+            <div className="project-stack">
+              {projects.map((project) => (
+                <article className={`project-scene project-${project.tone}`} key={project.slug}>
+                  <div className="project-scene-visual" aria-hidden="true">
+                    <span>{project.index}</span>
+                    <div className="project-terminal">
+                      <small>{project.category}</small>
+                      <strong>{project.title}</strong>
+                      <div>
+                        <i />
+                        <i />
+                        <i />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="project-scene-copy">
+                    <span>{project.index} / 03</span>
+                    <p className="project-category">{project.category}</p>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    <ul>
+                      {project.tags.map((tag) => (
+                        <li key={tag}>{tag}</li>
+                      ))}
+                    </ul>
+                    <div className="project-scene-footer">
+                      <span>{project.role}</span>
+                      <a href={project.href} target="_blank" rel="noreferrer">
+                        {project.linkLabel}
+                        <ArrowUpRight size={18} />
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
         <section
           id="journey"
           className="journey-section content-section"
           aria-labelledby="journey-title"
         >
           <div className="section-shell">
-            <motion.div className="section-heading" {...reveal}>
-              <p className="section-kicker">04 / Journey</p>
-              <h2 id="journey-title">Building, learning, shipping.</h2>
-            </motion.div>
-            <div className="timeline">
+            <p className="section-kicker">04 / Journey</p>
+            <h2 id="journey-title">Learning by building.</h2>
+            <div className="journey-list">
+              <div className="journey-path">
+                <i className="journey-path-fill" />
+              </div>
               {experience.map((item, index) => (
-                <motion.article className="timeline-item" key={item.title} {...reveal}>
-                  <span className="timeline-index">0{index + 1}</span>
-                  <p className="timeline-date">{item.date}</p>
+                <article className="journey-item" key={item.title}>
+                  <span className="journey-node">0{index + 1}</span>
+                  <p className="journey-date">{item.date}</p>
                   <div>
                     <h3>{item.title}</h3>
-                    <p className="timeline-org">{item.organization}</p>
+                    <p className="journey-org">{item.organization}</p>
                   </div>
-                  <p className="timeline-summary">{item.summary}</p>
-                </motion.article>
+                  <p className="journey-summary">{item.summary}</p>
+                </article>
               ))}
             </div>
           </div>
         </section>
-
         <section
           id="contact"
           className="contact-section content-section"
           aria-labelledby="contact-title"
         >
+          <div className="contact-marquee" aria-hidden="true">
+            <div className="contact-marquee-track">
+              LET’S BUILD · LET’S SCALE · LET’S BUILD · LET’S SCALE ·
+            </div>
+          </div>
           <div className="section-shell contact-inner">
-            <motion.div {...reveal}>
-              <p className="section-kicker">05 / Contact</p>
-              <h2 id="contact-title">Let’s build something that matters.</h2>
-              <p className="contact-copy">
-                I’m currently building products at Alpha Net Bangladesh. For thoughtful engineering
-                conversations, collaboration, or product ideas, my inbox is open.
-              </p>
-              <a className="email-link" href={`mailto:${profile.email}`}>
-                {profile.email}
-                <ArrowUpRight />
+            <p className="section-kicker">05 / Contact</p>
+            <h2 id="contact-title">Make the next system matter.</h2>
+            <p>
+              I’m currently building products at Alpha Net Bangladesh. For thoughtful engineering
+              conversations, collaboration, or product ideas, my inbox is open.
+            </p>
+            <a className="email-link" href={`mailto:${profile.email}`}>
+              {profile.email}
+              <ArrowUpRight />
+            </a>
+            <div className="contact-actions">
+              <button className="button button-primary" type="button" onClick={copyEmail}>
+                {copied ? <Check size={18} /> : <Clipboard size={18} />}{' '}
+                {copied ? 'Email copied' : 'Copy email'}
+              </button>
+              <a className="social-link" href={profile.linkedin} target="_blank" rel="noreferrer">
+                <Linkedin size={19} />
+                LinkedIn
+                <ArrowUpRight size={16} />
               </a>
-              <div className="contact-actions">
-                <button className="button button-primary" type="button" onClick={copyEmail}>
-                  {copied ? <Check size={18} /> : <Clipboard size={18} />}{' '}
-                  {copied ? 'Email copied' : 'Copy email'}
-                </button>
-                <a className="social-link" href={profile.linkedin} target="_blank" rel="noreferrer">
-                  <Linkedin size={19} />
-                  LinkedIn
-                  <ArrowUpRight size={16} />
-                </a>
-                <a className="social-link" href={profile.github} target="_blank" rel="noreferrer">
-                  <Github size={19} />
-                  GitHub
-                  <ArrowUpRight size={16} />
-                </a>
-              </div>
-              <span className="sr-only" aria-live="polite">
-                {copied ? 'Email copied' : ''}
-              </span>
-            </motion.div>
+              <a className="social-link" href={profile.github} target="_blank" rel="noreferrer">
+                <Github size={19} />
+                GitHub
+                <ArrowUpRight size={16} />
+              </a>
+            </div>
+            <span className="sr-only" aria-live="polite">
+              {copied ? 'Email copied' : ''}
+            </span>
           </div>
         </section>
       </main>
       <footer className="site-footer section-shell">
         <p>© {new Date().getFullYear()} Mahadi Jubaer</p>
-        <p>Designed for clarity. Built with care.</p>
+        <p>Systems in motion. Built with intent.</p>
         <a href="#top">
           Back to top
           <ArrowUpRight size={15} />
         </a>
       </footer>
-    </>
+    </div>
   );
 }
