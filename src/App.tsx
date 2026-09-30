@@ -279,7 +279,7 @@ export default function App() {
       </a>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Mahadi Jubaer, home">
-          <span className="brand-logo-frame" aria-hidden="true">
+          <span className="brand-symbol" aria-hidden="true">
             <img
               className="brand-logo"
               src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-logo.png`}
@@ -287,6 +287,9 @@ export default function App() {
               width="2048"
               height="768"
             />
+          </span>
+          <span className="brand-wordmark">
+            Mahadi <strong>Jubaer</strong>
           </span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">

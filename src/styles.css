@@ -236,34 +236,38 @@ img {
 .brand {
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
   width: max-content;
-  padding: 0.38rem 0.62rem;
-  border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
-  border-radius: 0.75rem;
-  background: #f5f1e8;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  color: var(--text);
+  transition: transform 0.2s ease;
 }
 .brand:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.17);
 }
-.brand-logo-frame {
+.brand-symbol {
   position: relative;
   display: block;
-  width: clamp(9.5rem, 13vw, 12rem);
-  height: clamp(1.75rem, 2.5vw, 2.2rem);
+  width: 52px;
+  height: 38px;
   overflow: hidden;
 }
 .brand-logo {
   position: absolute;
-  left: -4%;
-  top: -53%;
-  width: 109%;
+  left: -15%;
+  top: -58%;
+  width: 385%;
   max-width: none;
   height: auto;
+}
+.brand-wordmark {
+  font-size: 0.92rem;
+  font-weight: 760;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+.brand-wordmark strong {
+  color: var(--accent);
+  font-weight: 850;
 }
 .desktop-nav {
   display: flex;
@@ -1247,12 +1251,14 @@ img {
     margin-left: 0.18em;
   }
   .brand {
-    padding: 0.32rem 0.48rem;
-    border-radius: 0.62rem;
+    gap: 0.38rem;
   }
-  .brand-logo-frame {
-    width: clamp(8.5rem, 41vw, 10rem);
-    height: clamp(1.55rem, 7.3vw, 1.85rem);
+  .brand-symbol {
+    width: 45px;
+    height: 33px;
+  }
+  .brand-wordmark {
+    font-size: 0.82rem;
   }
   .hero-display {
     font-size: clamp(3.4rem, 15.5vw, 5.4rem);
