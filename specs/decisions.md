@@ -58,6 +58,14 @@ This file records architectural decisions and approved deviations. New entries M
 - Reason: Mahadi supplied these values and the original portrait directly for the portfolio.
 - Consequence: Implementation may use these assets without further identity confirmation, while project contribution details and employer-sensitive material still require approval.
 
+## DEC-008 — Expressive GSAP-led redesign
+
+- Date: 2026-09-30
+- Status: Accepted for implementation
+- Decision: Evolve the current editorial portfolio into a more expressive, motion-led experience inspired by the pacing and visual energy of Run Rob Run. Use GSAP as the single primary animation engine and introduce a curated branded technology-logo system.
+- Reason: Mahadi requested a more attractive creative-developer presentation, GSAP animations, and recognizable tool logos.
+- Consequence: The redesign must follow `animation-redesign.md`, preserve content integrity and accessibility, and meet the existing performance gates. It may borrow interaction principles but MUST NOT reproduce another portfolio's artwork, copy, layout, animation timings, or identity.
+
 ## Decision template
 
 ```md

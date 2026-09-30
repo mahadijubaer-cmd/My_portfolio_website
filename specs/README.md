@@ -41,6 +41,7 @@ The first release is a statically deployable website hosted from the GitHub repo
 | `profile-content.md` | Approved profile facts extracted from owner-provided LinkedIn screenshots |
 | `design.md` | Visual system, responsive layout, components, states |
 | `interaction.md` | Navigation, animation, theme, controls, form behavior |
+| `animation-redesign.md` | Run Rob Run-inspired visual redesign and GSAP implementation plan |
 | `architecture.md` | Stack, source organization, routing, data and security |
 | `quality.md` | Accessibility, performance, SEO, browser support |
 | `testing.md` | Test strategy, test matrix, acceptance procedure |
