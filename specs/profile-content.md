@@ -283,3 +283,4 @@ These fields remain blocked for production release unless Mahadi supplies them o
 - Preserve the distinction between employer, product affiliation, and project contribution.
 - Dates and `Present` status MUST be data-driven so they do not become stale.
 - Use `mahadi.jubaer@alora.cloud` as the public email and contact link unless the owner later replaces it.
+- Public WhatsApp contact: `+880 1706-867798`; link using `https://wa.me/8801706867798` in the Contact action row.

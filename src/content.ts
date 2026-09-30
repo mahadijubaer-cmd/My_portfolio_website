@@ -5,6 +5,7 @@ export const profile = {
   email: 'mahadi.jubaer@alora.cloud',
   github: 'https://github.com/mahadijubaer-cmd',
   linkedin: 'https://www.linkedin.com/in/mahadi-jubaer-9101263a5/',
+  whatsapp: 'https://wa.me/8801706867798',
 } as const;
 
 export const projects = [

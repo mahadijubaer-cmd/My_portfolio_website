@@ -7,6 +7,7 @@ import {
   Clipboard,
   Github,
   Linkedin,
+  MessageCircle,
   Menu,
   Moon,
   Sun,
@@ -564,6 +565,11 @@ export default function App() {
               <a className="social-link" href={profile.github} target="_blank" rel="noreferrer">
                 <Github size={19} />
                 GitHub
+                <ArrowUpRight size={16} />
+              </a>
+              <a className="social-link" href={profile.whatsapp} target="_blank" rel="noreferrer">
+                <MessageCircle size={19} />
+                WhatsApp
                 <ArrowUpRight size={16} />
               </a>
             </div>
