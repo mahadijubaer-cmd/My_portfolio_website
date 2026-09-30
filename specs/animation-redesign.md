@@ -157,7 +157,7 @@ This is the primary new tool-logo experience.
 #### Desktop
 
 - A pinned horizontal reel progresses through four groups: Frontend, Backend, Data, Cloud/DevOps.
-- Each technology is represented by an authentic monochrome SVG logo, human-readable label, and category.
+- Each technology is represented by an authentic SVG logo, human-readable label, and category. Official brand color is shown inside a consistent neutral logo tile.
 - The active logo scales from approximately 0.72 to 1, sharpens from muted to full contrast, and reveals a concise capability statement.
 - Background connection lines respond to active group progress.
 - The reel supports wheel/scroll progress; it MUST NOT require dragging.
@@ -183,7 +183,9 @@ Backend:
 - Python
 - FastAPI
 - Django
-- REST API symbol (custom neutral icon, not a brand)
+- SQLAlchemy
+- Pydantic
+- JWT
 
 Data:
 
@@ -197,7 +199,10 @@ Cloud and delivery:
 - Kubernetes
 - Linux
 - Git
-- GitHub Actions or a neutral CI/CD symbol
+- GitHub Actions
+- Nginx
+- Postman
+- Pytest
 
 AI architecture:
 
@@ -209,7 +214,7 @@ AI architecture:
 - Import only selected icon objects; MUST NOT bundle the complete icon catalog.
 - Render paths through a local accessible `TechLogo` component.
 - Every logo MUST have a visible text label; logos are not sufficient identification by themselves.
-- Use monochrome theme-aware fills by default. Brand color MAY appear on hover/active state if contrast remains valid.
+- Use official brand-color fills on a neutral high-contrast tile; surrounding cards remain theme-aware.
 - Review the license/trademark metadata and official brand guidelines for each selected mark.
 - Do not imply sponsorship, certification, or partnership.
 
@@ -223,7 +228,7 @@ Replace stacked static project cards with a desktop scroll sequence:
 - A progress counter changes `01 / 03`, `02 / 03`, `03 / 03`.
 - Project colors remain distinct: Alora blue, Mohseen green, SCMS amber.
 - External links remain visible and keyboard accessible throughout.
-- When real screenshots arrive, replace concept panels without changing layout contracts.
+- Alora Cloud and Mohseen MUST use the approved first-party public product visuals stored locally in the repository. SCMS retains the concept panel until a real screenshot is supplied.
 
 Mobile MUST render ordinary stacked project cards with lightweight entrance animation. The portfolio MUST not trap mobile users in a long pinned scene.
 

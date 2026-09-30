@@ -14,12 +14,14 @@ export const projects = [
     title: 'Alora Cloud Platform',
     category: 'Enterprise platform ecosystem',
     description:
-      'Contributing across development and quality engineering for an AI-native ecosystem spanning SaaS applications, shared platform services, cloud infrastructure, communications, and workflow automation.',
+      'Contributing to an AI-native enterprise ecosystem that brings identity, billing, workflow automation, business modules, and unified communications into one secure platform.',
     role: 'Junior Developer · QA',
-    tags: ['SaaS', 'Cloud-native', 'AI workflows'],
+    tags: ['Enterprise SaaS', 'AI automation', 'Unified communications'],
     href: 'https://alora.cloud/',
     linkLabel: 'Visit Alora Cloud',
     tone: 'blue',
+    image: 'images/alora-cloud-platform.svg',
+    imageAlt: 'Alora Cloud enterprise platform ecosystem illustration',
   },
   {
     index: '02',
@@ -27,12 +29,14 @@ export const projects = [
     title: 'Mohseen',
     category: 'Digital Islamic giving platform',
     description:
-      'Contributing to a digital giving experience that helps donors support causes through flexible payment methods, including mobile banking, cards, bank transfer, payment gateways, and QR payments.',
+      'Building a Bangladesh-first Islamic giving platform that connects bKash, Nagad, cards, kiosks, QR appeals, SMS, receipts, and audit-ready contributor records in one operating ledger.',
     role: 'Engineering contributor',
-    tags: ['Fintech', 'Payments', 'Web platform'],
+    tags: ['Giving platform', 'Payment rails', 'Contributor care'],
     href: 'https://mohseen.bd/',
     linkLabel: 'Visit Mohseen',
     tone: 'green',
+    image: 'images/mohseen-kiosk.jpg',
+    imageAlt: 'Contactless donation kiosk used at a mosque entrance',
   },
   {
     index: '03',
@@ -46,6 +50,8 @@ export const projects = [
     href: 'https://github.com/mahadijubaer-cmd/Smart_cafe_management',
     linkLabel: 'View source code',
     tone: 'amber',
+    image: null,
+    imageAlt: '',
   },
 ] as const;
 

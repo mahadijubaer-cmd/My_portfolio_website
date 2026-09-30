@@ -249,7 +249,7 @@ img {
   position: relative;
   padding-block: clamp(3rem, 6vw, 6rem);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
   grid-template-rows: auto 1fr auto;
   align-items: center;
   overflow: hidden;
@@ -259,32 +259,35 @@ img {
   align-self: start;
 }
 .hero-display {
-  grid-column: 1/-1;
+  grid-column: 1;
   grid-row: 2;
   margin: 0;
   z-index: 2;
-  font-size: clamp(4.4rem, 12.5vw, 12.5rem);
-  line-height: 0.73;
-  letter-spacing: -0.085em;
+  max-width: 920px;
+  font-size: clamp(4.2rem, 7.3vw, 8rem);
+  line-height: 0.88;
+  letter-spacing: -0.075em;
   font-weight: 900;
   text-transform: uppercase;
 }
 .hero-display span {
   display: block;
+  padding-bottom: 0.03em;
 }
 .hero-display span:nth-child(2) {
-  margin-left: 15%;
+  margin-left: 7%;
   color: var(--accent);
 }
 .hero-display span:nth-child(3) {
-  text-align: right;
+  margin-left: 2%;
+  text-align: left;
 }
 .hero-portrait-frame {
   position: absolute;
   z-index: 1;
-  top: 13%;
-  left: 43%;
-  width: min(32vw, 470px);
+  top: 12%;
+  right: 8%;
+  width: min(30vw, 440px);
   aspect-ratio: 3/4;
   clip-path: inset(0);
   transform: rotate(2deg);
@@ -545,9 +548,14 @@ img {
   filter: blur(45px);
 }
 .tech-icon {
-  width: clamp(5rem, 9vw, 9rem);
-  height: clamp(5rem, 9vw, 9rem);
-  color: var(--text);
+  width: clamp(6rem, 9vw, 9rem);
+  height: clamp(6rem, 9vw, 9rem);
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: #fff;
+  color: var(--brand-color);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
 }
 .tech-icon svg {
   width: 100%;
@@ -663,6 +671,33 @@ img {
   color: #121417;
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
   transform: rotate(-3deg);
+}
+.project-image {
+  width: min(100%, 650px);
+  margin: 0;
+  position: relative;
+  background: #f5f1e8;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+  transform: rotate(-2deg);
+  overflow: hidden;
+}
+.project-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+.project-blue .project-image img {
+  padding: 1.25rem;
+  object-fit: contain;
+}
+.project-image figcaption {
+  padding: 0.8rem 1rem;
+  color: #121417;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 .project-terminal small {
   font-size: 0.6rem;
@@ -951,6 +986,7 @@ img {
     position: relative;
     grid-row: 3;
     left: auto;
+    right: auto;
     top: auto;
     width: min(75vw, 450px);
     margin: 2rem 0;

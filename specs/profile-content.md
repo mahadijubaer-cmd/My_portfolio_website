@@ -150,17 +150,19 @@ The screenshots confirm three projects. Details below are intentionally limited 
 - Association: Alpha Net Bangladesh.
 - Public product URL: `https://alora.cloud/`.
 - Visible contribution: Junior Developer and QA team contribution.
-- Related confirmed domains: AI-native enterprise platform ecosystem, SaaS, shared platform services, cloud infrastructure, communications, workflow automation, and intelligent software capabilities.
-- Status: contribution details, source availability, exact stack, screenshots, and measurable outcomes remain `CONTENT_REQUIRED`.
+- Publicly confirmed product scope: identity, billing, workflow and rules engines, business modules, unified communications, AI automation, cloud application hosting, and shared enterprise services.
+- Approved portfolio visual: the public Alora Cloud ecosystem illustration retrieved from the canonical product site.
+- Status: exact personal contribution breakdown, source availability, exact stack, and measurable outcomes remain `CONTENT_REQUIRED`.
 - Confidentiality: project copy MUST avoid proprietary architecture or client information unless approved.
 
 ### PRJ-02 — Mohseen
 
 - Description visible in Projects: a digital Islamic giving platform.
 - Public product URL: `https://mohseen.bd/`.
-- Activity screenshot describes donor payment choices including mobile banking, payment gateways, cards/bank transfer, QR payment, and receipts.
+- Publicly confirmed product scope: bKash, Nagad, SSLCommerz, cards, kiosks, QR pages, live appeals, SMS, fund separation, contributor care, receipts, reporting, and audit-ready records.
 - Mahadi is shown as contributing to the project; exact role is not fully visible.
-- Status: exact contribution, source availability, stack, screenshots, and measurable outcomes remain `CONTENT_REQUIRED`.
+- Approved portfolio visual: the public entrance-kiosk image retrieved from the canonical Mohseen site.
+- Status: exact personal contribution breakdown, source availability, stack, and measurable outcomes remain `CONTENT_REQUIRED`.
 - Spelling: use **Mohseen** as displayed.
 
 ### PRJ-03 — SCMS Platform
@@ -172,7 +174,7 @@ The screenshots confirm three projects. Details below are intentionally limited 
 
 ### Featured-project policy
 
-These three projects SHOULD be the initial candidates for Selected Work. They MUST NOT be published as full case studies until their missing project fields are supplied. Alora Cloud and Mohseen may require employer approval before displaying detailed screenshots or technical information.
+These three projects SHOULD be the initial candidates for Selected Work. They MUST NOT be published as full case studies until their missing project fields are supplied. Public marketing facts and first-party promotional images from Alora Cloud and Mohseen are approved for project previews; proprietary architecture, client information, and unverified personal outcomes remain prohibited.
 
 ## 7. Skills inventory
 

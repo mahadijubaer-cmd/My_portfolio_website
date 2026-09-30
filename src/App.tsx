@@ -424,17 +424,28 @@ export default function App() {
             <div className="project-stack">
               {projects.map((project) => (
                 <article className={`project-scene project-${project.tone}`} key={project.slug}>
-                  <div className="project-scene-visual" aria-hidden="true">
-                    <span>{project.index}</span>
-                    <div className="project-terminal">
-                      <small>{project.category}</small>
-                      <strong>{project.title}</strong>
-                      <div>
-                        <i />
-                        <i />
-                        <i />
+                  <div className="project-scene-visual">
+                    <span aria-hidden="true">{project.index}</span>
+                    {project.image ? (
+                      <figure className="project-image">
+                        <img
+                          src={`${import.meta.env.BASE_URL}${project.image}`}
+                          alt={project.imageAlt}
+                          loading="lazy"
+                        />
+                        <figcaption>{project.title} / Live product</figcaption>
+                      </figure>
+                    ) : (
+                      <div className="project-terminal" aria-hidden="true">
+                        <small>{project.category}</small>
+                        <strong>{project.title}</strong>
+                        <div>
+                          <i />
+                          <i />
+                          <i />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                   <div className="project-scene-copy">
                     <span>{project.index} / 03</span>
