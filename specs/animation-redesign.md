@@ -120,8 +120,7 @@ Replace the static split hero with a stage-like composition:
 
 Recommended copy:
 
-> FULL-STACK  
-> SOFTWARE ENGINEER
+> FULL-STACK / SOFTWARE ENGINEER
 
 Supporting line:
 
