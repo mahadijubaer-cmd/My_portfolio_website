@@ -45,7 +45,7 @@ export default function App() {
     const fallback = window.setTimeout(() => {
       sessionStorage.setItem('mj-intro-seen', 'true');
       setShowIntro(false);
-    }, 1900);
+    }, 2600);
     return () => window.clearTimeout(fallback);
   }, [showIntro]);
   useEffect(() => {
@@ -77,25 +77,52 @@ export default function App() {
               setShowIntro(false);
             },
           })
+          .from('.intro-reveal', {
+            yPercent: 115,
+            duration: reduced ? 0.05 : 0.48,
+            stagger: 0.08,
+            ease: 'power4.out',
+          })
+          .from(
+            '.intro-meta > *',
+            {
+              y: 14,
+              autoAlpha: 0,
+              duration: reduced ? 0.05 : 0.32,
+              stagger: 0.05,
+              ease: 'power3.out',
+            },
+            reduced ? 0 : 0.18,
+          )
           .to('.intro-progress-bar', {
             scaleX: 1,
-            duration: reduced ? 0.1 : 1.05,
-            ease: 'power3.inOut',
+            duration: reduced ? 0.08 : 0.55,
+            ease: 'power4.inOut',
           })
           .to(
             '.intro-count',
             {
               innerText: 100,
-              duration: reduced ? 0.1 : 1,
+              duration: reduced ? 0.08 : 0.55,
               snap: { innerText: 1 },
               ease: 'power2.out',
             },
-            0,
+            reduced ? 0 : 0.42,
           )
+          .to('.intro-accent-panel', {
+            scaleX: 1,
+            duration: reduced ? 0.05 : 0.32,
+            transformOrigin: 'right',
+            ease: 'power4.inOut',
+          })
           .to(
             '.intro-panel',
-            { yPercent: -100, duration: reduced ? 0.12 : 0.7, ease: 'power4.inOut' },
-            '+=.08',
+            {
+              clipPath: 'inset(0 0 100% 0)',
+              duration: reduced ? 0.1 : 0.52,
+              ease: 'power4.inOut',
+            },
+            '-=.12',
           );
       }
       if (!reduced) {
@@ -224,14 +251,33 @@ export default function App() {
     <div ref={root}>
       {showIntro && (
         <div className="intro-panel" aria-hidden="true">
-          <div className="intro-mark">
-            MJ<span>Systems in motion</span>
+          <div className="intro-accent-panel" />
+          <div className="intro-top intro-meta">
+            <span className="intro-monogram">MJ</span>
+            <span>Portfolio / 2026</span>
+          </div>
+          <div className="intro-title">
+            <p className="intro-meta">
+              <span>Software engineer</span>
+              <span>Dhaka, Bangladesh</span>
+            </p>
+            <strong>
+              <span className="intro-line-mask">
+                <span className="intro-reveal">Mahadi</span>
+              </span>
+              <span className="intro-line-mask intro-name-offset">
+                <span className="intro-reveal">Jubaer.</span>
+              </span>
+            </strong>
           </div>
           <div className="intro-meter">
+            <div>
+              <span>Initializing portfolio</span>
+              <span>
+                <b className="intro-count">0</b> / 100
+              </span>
+            </div>
             <i className="intro-progress-bar" />
-            <span>
-              <b className="intro-count">0</b>%
-            </span>
           </div>
         </div>
       )}
@@ -344,10 +390,10 @@ export default function App() {
           <div className="section-shell about-story-grid">
             <div className="about-portrait">
               <img
-                src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-portrait.jpg`}
-                alt=""
-                width="1000"
-                height="1000"
+                src={`${import.meta.env.BASE_URL}images/mahadi-jubaer-event.jpg`}
+                alt="Mahadi Jubaer at the Mohseen platform launch event"
+                width="1256"
+                height="1256"
                 loading="lazy"
               />
               <div className="system-nodes" aria-hidden="true">

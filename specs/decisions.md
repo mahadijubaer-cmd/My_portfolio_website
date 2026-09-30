@@ -56,6 +56,8 @@ This file records architectural decisions and approved deviations. New entries M
 - Status: Accepted
 - Decision: Use `mahadi.jubaer@alora.cloud` as the public contact email; use the owner-supplied professional portrait as the primary profile image; and recognize the supplied URLs for Alora Cloud, Mohseen, and Smart Cafe Management as canonical project destinations.
 - Reason: Mahadi supplied these values and the original portrait directly for the portfolio.
+- Decision: Keep the rooftop portrait in the hero and use the owner-supplied Mohseen launch-event portrait in About so the two major identity sections do not repeat the same image.
+- Reason: Mahadi explicitly requested the replacement and supplied the event image directly.
 - Consequence: Implementation may use these assets without further identity confirmation, while project contribution details and employer-sensitive material still require approval.
 
 ## DEC-008 — Expressive GSAP-led redesign
