@@ -26,6 +26,9 @@ const navItems = [
   ['Contact', '#contact'],
 ] as const;
 
+const techCategories = ['All', 'Frontend', 'Backend', 'Data', 'Cloud'] as const;
+type TechCategory = (typeof techCategories)[number];
+
 export default function App() {
   const root = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -34,6 +37,7 @@ export default function App() {
   );
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [techCategory, setTechCategory] = useState<TechCategory>('All');
   const [showIntro, setShowIntro] = useState(
     () => sessionStorage.getItem('mj-intro-seen') !== 'true',
   );
@@ -436,9 +440,26 @@ export default function App() {
             <h2 id="tools-title">Tools I use to move ideas forward.</h2>
             <p>From interface craft to infrastructure—each tool has a role in the system.</p>
           </div>
+          <div className="tech-filters section-shell" aria-label="Filter technologies">
+            {techCategories.map((category) => (
+              <button
+                type="button"
+                key={category}
+                className={techCategory === category ? 'is-active' : ''}
+                aria-pressed={techCategory === category}
+                onClick={() => setTechCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
           <div className="tech-track">
             {technologies.map((technology) => (
-              <TechLogo technology={technology} key={technology.name} />
+              <TechLogo
+                technology={technology}
+                visible={techCategory === 'All' || technology.category === techCategory}
+                key={technology.name}
+              />
             ))}
           </div>
           <div className="tools-progress section-shell" aria-hidden="true">
@@ -486,7 +507,11 @@ export default function App() {
                     <span>{project.index} / 03</span>
                     <p className="project-category">{project.category}</p>
                     <h3>{project.title}</h3>
-                    <p>{project.description}</p>
+                    <p className="project-description">{project.description}</p>
+                    <details className="mobile-project-details">
+                      <summary>Project overview</summary>
+                      <p>{project.description}</p>
+                    </details>
                     <ul>
                       {project.tags.map((tag) => (
                         <li key={tag}>{tag}</li>
@@ -525,7 +550,11 @@ export default function App() {
                     <h3>{item.title}</h3>
                     <p className="journey-org">{item.organization}</p>
                   </div>
-                  <p className="journey-summary">{item.summary}</p>
+                  <p className="journey-summary journey-summary-desktop">{item.summary}</p>
+                  <details className="mobile-journey-details">
+                    <summary>Role details</summary>
+                    <p>{item.summary}</p>
+                  </details>
                 </article>
               ))}
             </div>

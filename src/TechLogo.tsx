@@ -1,10 +1,17 @@
 import type { Technology } from './technologies';
 import type { CSSProperties } from 'react';
-export function TechLogo({ technology }: { technology: Technology }) {
+export function TechLogo({
+  technology,
+  visible = true,
+}: {
+  technology: Technology;
+  visible?: boolean;
+}) {
   return (
     <article
       className="tech-card"
       data-category={technology.category}
+      data-visible={visible}
       style={{ '--brand-color': `#${technology.icon.hex}` } as CSSProperties}
     >
       <div className="tech-icon" aria-hidden="true">

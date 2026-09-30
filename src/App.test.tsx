@@ -17,4 +17,19 @@ describe('Portfolio', () => {
     await user.click(screen.getByRole('button', { name: 'Close navigation' }));
     expect(screen.queryByRole('navigation', { name: 'Mobile navigation' })).not.toBeInTheDocument();
   });
+  it('filters the mobile technology grid by category', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const backendFilter = screen.getByRole('button', { name: 'Backend' });
+    await user.click(backendFilter);
+    expect(backendFilter).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('heading', { name: 'FastAPI' }).closest('article')).toHaveAttribute(
+      'data-visible',
+      'true',
+    );
+    expect(screen.getByRole('heading', { name: 'React' }).closest('article')).toHaveAttribute(
+      'data-visible',
+      'false',
+    );
+  });
 });

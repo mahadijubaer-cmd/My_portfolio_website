@@ -164,9 +164,11 @@ This is the primary new tool-logo experience.
 
 #### Mobile
 
-- Render a two-column or horizontal snap list in normal flow.
+- Render a compact three-column logo grid in normal flow, falling back to two columns on very narrow screens.
 - No pinned horizontal scrolling.
 - Logos remain at least 40px visual size with readable labels.
+- Provide touch-friendly category filters for All, Frontend, Backend, Data, and Cloud.
+- Hide capability statements in the default mobile grid; the complete technology inventory remains available through filtering.
 
 #### Initial logo set
 
@@ -230,7 +232,7 @@ Replace stacked static project cards with a desktop scroll sequence:
 - External links remain visible and keyboard accessible throughout.
 - Alora Cloud and Mohseen MUST use the approved first-party public product visuals stored locally in the repository. SCMS retains the concept panel until a real screenshot is supplied.
 
-Mobile MUST render ordinary stacked project cards with lightweight entrance animation. The portfolio MUST not trap mobile users in a long pinned scene.
+Mobile MUST render compact stacked project cards with lightweight entrance animation. Descriptions use native expandable disclosures, while the image, title, tags, role, and external link remain immediately visible. The portfolio MUST not trap mobile users in a long pinned scene.
 
 ### 4.7 Journey: animated system timeline
 
