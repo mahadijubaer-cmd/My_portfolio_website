@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mahadijubaer-cmd.github.io/My_portfolio_website/sitemap.xml
