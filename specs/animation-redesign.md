@@ -133,7 +133,7 @@ Create a full-width repeated phrase sequence inspired by the reference's rhythmi
 - `THOUGHTFUL SYSTEMS — BUILT TO SCALE`
 - `FROM PRODUCT IDEA — TO PRODUCTION`
 
-Each phrase appears twice in opposing directions. Scroll progress moves the lines horizontally by a controlled amount. Movement MUST stop under reduced motion and MUST not create horizontal page overflow.
+Each phrase appears once inside the shared content grid. A short opposing entrance reveal of no more than 32px settles both lines at zero translation; text MUST remain fully readable and MUST not create horizontal page overflow.
 
 ### 4.4 About: pinned portrait and narrative
 
@@ -152,15 +152,14 @@ Mobile behavior:
 
 ### 4.5 Technology orbit and tool reel
 
-This is the primary new tool-logo experience.
+This is the primary tool-logo experience. Desktop uses a compact four-row engineering arsenal; mobile uses a filterable logo grid.
 
 #### Desktop
 
-- A pinned horizontal reel progresses through four groups: Frontend, Backend, Data, Cloud/DevOps.
+- Four aligned rows present Frontend, Backend, Data, and Cloud/DevOps without pinning or horizontal scroll.
 - Each technology is represented by an authentic SVG logo, human-readable label, and category. Official brand color is shown inside a consistent neutral logo tile.
-- The active logo scales from approximately 0.72 to 1, sharpens from muted to full contrast, and reveals a concise capability statement.
-- Background connection lines respond to active group progress.
-- The reel supports wheel/scroll progress; it MUST NOT require dragging.
+- Each row includes its category, complete readable tool list, and up to four representative brand marks.
+- Rows use short one-time entrance reveals and remain fully readable at rest.
 
 #### Mobile
 
@@ -222,12 +221,12 @@ AI architecture:
 
 ### 4.6 Selected work: cinematic project sequence
 
-Replace stacked static project cards with a desktop scroll sequence:
+Replace stacked static project cards with a desktop indexed preview:
 
 - Section begins with a large `SELECTED SYSTEMS` transition.
-- One project visual is pinned while project index, title, category, and description update.
-- Transition between projects uses clipping/masking and 3–5% media scale, not 3D spinning.
-- A progress counter changes `01 / 03`, `02 / 03`, `03 / 03`.
+- One shared project visual updates when a project row receives hover or keyboard focus.
+- Project rows expose index, title, category, and external destination without requiring animation.
+- A visible counter changes `01 / 03`, `02 / 03`, `03 / 03` with the active preview.
 - Project colors remain distinct: Alora blue, Mohseen green, SCMS amber.
 - External links remain visible and keyboard accessible throughout.
 - Alora Cloud and Mohseen MUST use the approved first-party public product visuals stored locally in the repository. SCMS retains the concept panel until a real screenshot is supplied.

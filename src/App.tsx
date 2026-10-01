@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
 import { useGSAP } from '@gsap/react';
 import {
   ArrowDownRight,
@@ -38,6 +39,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [techCategory, setTechCategory] = useState<TechCategory>('All');
+  const [activeProject, setActiveProject] = useState(0);
   const [showIntro, setShowIntro] = useState(
     () => sessionStorage.getItem('mj-intro-seen') !== 'true',
   );
@@ -149,30 +151,21 @@ export default function App() {
           ease: 'power4.out',
           delay: showIntro ? 1.2 : 0.18,
         });
-        gsap.to('.manifesto-line-a', {
-          xPercent: -18,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.manifesto',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1,
-          },
+        gsap.from('.manifesto-line-a', {
+          x: -32,
+          autoAlpha: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.manifesto', start: 'top 78%', once: true },
         });
-        gsap.fromTo(
-          '.manifesto-line-b',
-          { xPercent: -18 },
-          {
-            xPercent: 0,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: '.manifesto',
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1,
-            },
-          },
-        );
+        gsap.from('.manifesto-line-b', {
+          x: 32,
+          autoAlpha: 0,
+          duration: 0.7,
+          delay: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.manifesto', start: 'top 78%', once: true },
+        });
         gsap.utils.toArray<HTMLElement>('.about-paragraph').forEach((item) =>
           gsap.from(item, {
             y: 55,
@@ -181,21 +174,13 @@ export default function App() {
             scrollTrigger: { trigger: item, start: 'top 82%', once: true },
           }),
         );
-        mm.add('(min-width: 901px)', () => {
-          const track = document.querySelector<HTMLElement>('.tech-track');
-          if (!track) return;
-          gsap.to(track, {
-            x: () => -(track.scrollWidth - window.innerWidth + 120),
-            ease: 'none',
-            scrollTrigger: {
-              trigger: '.tools-stage',
-              start: 'top top',
-              end: () => `+=${technologies.length * 145}`,
-              scrub: 1,
-              pin: true,
-              invalidateOnRefresh: true,
-            },
-          });
+        gsap.from('.arsenal-group', {
+          y: 24,
+          autoAlpha: 0,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.desktop-arsenal', start: 'top 78%', once: true },
         });
         gsap.from('.journey-path-fill', {
           scaleY: 0,
@@ -384,10 +369,9 @@ export default function App() {
           </div>
         </section>
         <section className="manifesto" aria-label="Engineering philosophy">
-          <div className="manifesto-line manifesto-line-a">
-            THOUGHTFUL SYSTEMS — BUILT TO SCALE —
-          </div>
-          <div className="manifesto-line manifesto-line-b">FROM PRODUCT IDEA — TO PRODUCTION —</div>
+          <p className="manifesto-label">Engineering philosophy / 01</p>
+          <div className="manifesto-line manifesto-line-a">THOUGHTFUL SYSTEMS — BUILT TO SCALE</div>
+          <div className="manifesto-line manifesto-line-b">FROM PRODUCT IDEA — TO PRODUCTION</div>
         </section>
         <section id="about" className="about-story content-section" aria-labelledby="about-title">
           <div className="section-shell about-story-grid">
@@ -447,8 +431,34 @@ export default function App() {
         <section id="tools" className="tools-stage content-section" aria-labelledby="tools-title">
           <div className="tools-header section-shell">
             <p className="section-kicker">02 / Technology system</p>
-            <h2 id="tools-title">Tools I use to move ideas forward.</h2>
+            <h2 id="tools-title">A practical engineering arsenal.</h2>
             <p>From interface craft to infrastructure—each tool has a role in the system.</p>
+          </div>
+          <div className="desktop-arsenal section-shell">
+            {techCategories.slice(1).map((category, groupIndex) => {
+              const groupTools = technologies.filter((tool) => tool.category === category);
+              return (
+                <article className="arsenal-group" key={category}>
+                  <div className="arsenal-index">0{groupIndex + 1}</div>
+                  <div className="arsenal-content">
+                    <h3>{category}</h3>
+                    <p>{groupTools.map((tool) => tool.name).join(' · ')}</p>
+                  </div>
+                  <div className="arsenal-logos" aria-hidden="true">
+                    {groupTools.slice(0, 4).map((tool) => (
+                      <span
+                        key={tool.name}
+                        style={{ '--tool-color': `#${tool.icon.hex}` } as CSSProperties}
+                      >
+                        <svg viewBox="0 0 24 24">
+                          <path d={tool.icon.path} />
+                        </svg>
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
           </div>
           <div className="tech-filters section-shell" aria-label="Filter technologies">
             {techCategories.map((category) => (
@@ -472,10 +482,6 @@ export default function App() {
               />
             ))}
           </div>
-          <div className="tools-progress section-shell" aria-hidden="true">
-            <span>SCROLL TO EXPLORE</span>
-            <i />
-          </div>
         </section>
         <section id="work" className="work-sequence content-section" aria-labelledby="work-title">
           <div className="section-shell">
@@ -487,7 +493,48 @@ export default function App() {
                 operations.
               </p>
             </div>
-            <div className="project-stack">
+            <div className="desktop-work-index">
+              <div className={`work-preview project-${projects[activeProject].tone}`}>
+                {projects[activeProject].image ? (
+                  <img
+                    src={`${import.meta.env.BASE_URL}${projects[activeProject].image}`}
+                    alt={projects[activeProject].imageAlt}
+                  />
+                ) : (
+                  <div className="work-preview-type">SCMS</div>
+                )}
+                <span>{projects[activeProject].index} / 03</span>
+              </div>
+              <div className="work-index-list">
+                {projects.map((project, index) => (
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={activeProject === index ? 'is-active' : ''}
+                    onMouseEnter={() => setActiveProject(index)}
+                    onFocus={() => setActiveProject(index)}
+                    key={project.slug}
+                  >
+                    <span>{project.index}</span>
+                    <div>
+                      <strong>{project.title}</strong>
+                      <small>{project.category}</small>
+                    </div>
+                    <ArrowUpRight size={22} />
+                  </a>
+                ))}
+                <div className="work-index-detail">
+                  <p>{projects[activeProject].description}</p>
+                  <div>
+                    {projects[activeProject].tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="project-stack mobile-project-stack">
               {projects.map((project) => (
                 <article className={`project-scene project-${project.tone}`} key={project.slug}>
                   <div className="project-scene-visual">
@@ -547,7 +594,7 @@ export default function App() {
         >
           <div className="section-shell">
             <p className="section-kicker">04 / Journey</p>
-            <h2 id="journey-title">Learning by building.</h2>
+            <h2 id="journey-title">Learning through real systems.</h2>
             <div className="journey-list">
               <div className="journey-path">
                 <i className="journey-path-fill" />
